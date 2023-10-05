@@ -32,13 +32,16 @@ public class RegistrationController {
             UserDAO userDao = new UserDAO();
             boolean success = userDao.createUser(userLogin, userPassword);
             if (success) {
-                System.out.println("Регистрация успешна!");
+                //System.out.println("Регистрация успешна!");
+                HelloApplication.showAlertView("Вы успешно зарегистрированы.\nПереход в окно входа.");
                 onRegistrationOpenLoginView();
             } else {
-                System.out.println("Ошибка при регистрации");
+                HelloApplication.showAlertView("Ошибка при регистрации :(");
+                //System.out.println("Ошибка при регистрации");
             }
         } else {
-            System.out.println("Пароли не совпадают");
+            HelloApplication.showAlertView("Введенные пароли не совпадают.");
+            //System.out.println("Пароли не совпадают");
         }
     }
 

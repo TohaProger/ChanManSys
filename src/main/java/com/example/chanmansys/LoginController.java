@@ -9,6 +9,9 @@ import javafx.scene.Scene;
 import javafx.fxml.FXMLLoader;
 import java.io.IOException;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class LoginController {
     private static User currentUser;
 
@@ -29,12 +32,14 @@ public class LoginController {
         // Здесь вы можете добавить логику проверки логина и пароля
         if (loginSuccessful) {
             // Здесь можно выполнить действия после успешной авторизации
-            System.out.println("Авторизация успешна!");
+            //System.out.println("Вы успешно авторизованы!");
+            HelloApplication.showAlertView("Вы успешно авторизованы.\nПереход в главное окно.");
             currentUser = new User(userLogin);
             onLoginOpenMainView();
         } else {
             // Здесь можно обработать случай неверных данных
-            System.out.println("Неверный логин или пароль");
+            HelloApplication.showAlertView("Неверный логин или пароль :(");
+            //System.out.println("Неверный логин или пароль");
         }
     }
 
@@ -43,6 +48,7 @@ public class LoginController {
         // Закрываем текущее окно
         Stage currentStage = (Stage) userLogin.getScene().getWindow();
         currentStage.close(); // Используйте hide(), если хотите просто скрыть окно
+
         // Открываем окно регистрации
         FXMLLoader registrationLoader = new FXMLLoader(getClass().getResource("registration-view.fxml"));
         Stage registrationStage = new Stage();

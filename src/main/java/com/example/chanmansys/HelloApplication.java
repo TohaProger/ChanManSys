@@ -7,6 +7,9 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
@@ -28,5 +31,12 @@ public class HelloApplication extends Application {
     public static void main(String[] args) {
         launch();
     }
-}
 
+    public static void showAlertView(String alertMessage) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        //alert.setTitle(alertTitle);
+        alert.setHeaderText(null);
+        alert.setContentText(alertMessage);
+        alert.showAndWait();
+    }
+}
