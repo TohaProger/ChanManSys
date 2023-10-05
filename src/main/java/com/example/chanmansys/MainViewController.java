@@ -14,7 +14,7 @@ public class MainViewController {
         mainLabel.setText("Это главное окно");
 
         // Отображаем информацию о текущем пользователе
-        User currentUser = LoginController.getCurrentUser();
+        User currentUser = User.getCurrentUser();
 
         if (currentUser != null) {
             usernameLabel.setText(currentUser.getUserLogin());
