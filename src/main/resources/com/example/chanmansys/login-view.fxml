@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- login-view.fxml -->
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.example.chanmansys.LoginController"
+            prefHeight="400.0" prefWidth="600.0">
+</AnchorPane>-->
+
+
+<AnchorPane minHeight="500.0" minWidth="700.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chanmansys.LoginController">
+   <children>
+      <VBox alignment="CENTER" prefHeight="500.0" prefWidth="700.0" spacing="10">
+          <Label text="Логин:">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+          <TextField fx:id="userLogin" maxHeight="30.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Логин" />
+          <Label text="Пароль:">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+          <PasswordField fx:id="passwordField" maxHeight="96.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Пароль" />
+          <Button onAction="#onLoginButtonClick" prefHeight="30.0" prefWidth="70.0" text="Войти">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+         <Label text="У вас нет аккаунта? Тогда:">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Label>
+         <Button onAction="#onRegistrationViewButtonClick" prefHeight="30.0" prefWidth="159.0" text="Зарегистрироваться">
+            <font>
+               <Font size="14.0" />
+            </font>
+         </Button>
+      </VBox>
+   </children>
+</AnchorPane>
