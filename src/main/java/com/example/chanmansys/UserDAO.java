@@ -1,4 +1,4 @@
-package com.example.chanmansys;
+package com.example.chanmansys; //
 
 import java.sql.Connection;
 import java.sql.DriverManager;
