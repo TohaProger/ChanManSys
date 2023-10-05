@@ -33,6 +33,7 @@ public class RegistrationController {
             boolean success = userDao.createUser(userLogin, userPassword);
             if (success) {
                 System.out.println("Регистрация успешна!");
+                onRegistrationOpenLoginView();
             } else {
                 System.out.println("Ошибка при регистрации");
             }
@@ -53,5 +54,21 @@ public class RegistrationController {
         loginStage.setTitle("Вход");
         loginStage.setScene(new Scene(loginLoader.load()));
         loginStage.show();
+    }
+
+    //открыть окно входа при успешной регистрации
+    private void onRegistrationOpenLoginView() {
+        try {
+            Stage currentStage = (Stage) userLoginField.getScene().getWindow();
+            currentStage.close();
+
+            FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+            Stage mainStage = new Stage();
+            mainStage.setTitle("Главное окно");
+            mainStage.setScene(new Scene(mainLoader.load()));
+            mainStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

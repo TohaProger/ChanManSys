@@ -32,7 +32,7 @@
             </font>
          </Label>
           <PasswordField fx:id="passwordField" maxHeight="96.0" maxWidth="300.0" prefHeight="30.0" prefWidth="300.0" promptText="Пароль" />
-          <Button onAction="#onLoginButtonClick" prefHeight="30.0" prefWidth="70.0" text="Войти">
+          <Button onAction="#onLoginButtonLogin" prefHeight="30.0" prefWidth="70.0" text="Войти">
             <font>
                <Font size="14.0" />
             </font>
@@ -42,7 +42,7 @@
                <Font size="14.0" />
             </font>
          </Label>
-         <Button onAction="#onRegistrationViewButtonClick" prefHeight="30.0" prefWidth="159.0" text="Зарегистрироваться">
+         <Button onAction="#onLoginButtonRegistrationView" prefHeight="30.0" prefWidth="159.0" text="Зарегистрироваться">
             <font>
                <Font size="14.0" />
             </font>
