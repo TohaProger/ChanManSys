@@ -24,7 +24,7 @@ public class LoginController {
         if (loginSuccessful) {
             // Здесь действия после успешной авторизации
             StartApp.showAlertView("Вы успешно авторизованы.\nПереход в главное окно.");
-            User.setCurrentUser(userLogin);
+            User.setCurrentUser(userLogin, userPassword);
             StartApp.openWindow("main-view.fxml", "Главное окно");
         } else {
             // Здесь в случае неверных данных

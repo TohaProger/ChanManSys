@@ -3,14 +3,10 @@
  */
 package com.example.chanmansys;
 
-import com.example.chanmansys.DAO.ChangeDAO;
-import com.example.chanmansys.Model.Change;
-
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.Scene;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.CheckBox;
@@ -18,13 +14,13 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
-
-import java.util.List;
+import javafx.stage.Stage;
 
 public class MainViewController {
     @FXML
-    private TableColumn<?, ?> ChangeDescription;
+    private TableColumn<User, String> ChangeDescription;
 
     @FXML
     private TableColumn<?, ?> ChangeID;
@@ -33,10 +29,10 @@ public class MainViewController {
     private TableColumn<?, ?> ChangePriority;
 
     @FXML
-    private TableColumn<?, ?> ChangeStatus;
+    private TableColumn<User, String> ChangeStatus;
 
     @FXML
-    private TableView<?> RequirementsTable;
+    private TableView<User> RequirementsTable;
 
     @FXML
     private TableColumn<?, ?> ServiceID_FK;
@@ -64,16 +60,19 @@ public class MainViewController {
     }
     public void initialize() {
         // Загрузка данных в таблицу
-        loadTableData();
+
+        Stage stage = new Stage();
+        loadTableData(stage);
 
         //ChangeDAO changeDAO = new ChangeDAO();
 
         //System.out.println(changeDAO.getYesNoChanges());
     }
 
-    private void loadTableData() {
+    private void loadTableData(Stage stage) {
+
         // Создаем экземпляр ChangeDAO для работы с базой данных
-        ChangeDAO changeDAO = new ChangeDAO();
+        /*ChangeDAO changeDAO = new ChangeDAO();
 
         // Получаем все записи из базы данных
         List<Change> changesList = changeDAO.getAllChanges();
@@ -84,6 +83,55 @@ public class MainViewController {
         List<Change> tableData = (List<Change>) RequirementsTable.getItems();
 
         // Добавляем все записи из changesList в ObservableList
-        tableData.addAll(changesList);
+        tableData.addAll(changesList);*/
+
+
+        // Отображаем информацию о текущем пользователе
+        User currentUser = User.getCurrentUser();
+
+        if (currentUser != null) {
+            textDescription.setText("Вы вошли как: " + currentUser.getUserLogin());
+        }
+
+        // ниже идёт заполнение таблицы:
+        ObservableList<User> users = User.getAllUsers();
+
+        // создаем список объектов
+        /*ObservableList<User> users = FXCollections.observableArrayList(
+                new User("user1", "34"),
+                new User("Bob", "22")
+        );*/
+        // определяем таблицу и устанавливаем данные
+        //TableView<User> table = new TableView<User>(users);
+        //table.setPrefWidth(250);
+        //table.setPrefHeight(200);
+
+        RequirementsTable = new TableView<>(users);
+
+        // столбец для вывода имени
+        //TableColumn<User, String> nameColumn = new TableColumn<User, String>("login");
+        ChangeDescription = new TableColumn<User, String>("login");
+        // определяем фабрику для столбца с привязкой к свойству name
+        //nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("UserLogin"));
+        ChangeDescription.setCellValueFactory(new PropertyValueFactory<User, String>("UserLogin"));
+        // добавляем столбец
+        RequirementsTable.getColumns().add(ChangeDescription);
+
+        // столбец для вывода возраста
+        /*TableColumn<User, Integer> ageColumn = new TableColumn<User, Integer>("password");
+        ageColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("UserPassword"));
+        table.getColumns().add(ageColumn);*/
+
+        ChangeStatus = new TableColumn<User, String>("passw");
+        ChangeStatus.setCellValueFactory(new PropertyValueFactory<User, String>("UserPassword"));
+        RequirementsTable.getColumns().add(ChangeStatus);
+
+        //FlowPane root = new FlowPane(10, 10, RequirementsTable);
+
+        //Scene scene = new Scene(root, 300, 250);
+
+        //stage.setScene(scene);
+        //stage.setTitle("TableView in JavaFX");
+        //stage.show();
     }
 }
