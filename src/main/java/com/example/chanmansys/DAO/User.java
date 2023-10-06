@@ -5,22 +5,29 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-public class User {
+public class User implements java.io.Serializable {
+    // member variables
     private SimpleIntegerProperty UserID;
-    private SimpleStringProperty UserLogin;
-    private SimpleStringProperty UserPassword;
+    SimpleStringProperty UserLogin;
+    SimpleStringProperty UserPassword;
     //private String UserName;
+
+    // getter and setter methods...
     private static User currentUser;
 
-    public User(String userLogin, String userPassword) {
-        //this.UserID = new SimpleIntegerProperty(userLogin);
+    /*public User(String userLogin, String userPassword) {
+        //this.UserID = new SimpleIntegerProperty(userID);
         this.UserLogin = new SimpleStringProperty(userLogin);
         this.UserPassword = new SimpleStringProperty(userPassword);
+    }*/
+
+    public User() {
     }
 
     public String getUserLogin() {
         return UserLogin.get();
     }
+
     public void setUserLogin(String value) {
         UserLogin.set(value);
     }
@@ -28,6 +35,7 @@ public class User {
     public String getUserPassword() {
         return UserPassword.get();
     }
+
     public void setUserPassword(String value) {
         UserPassword.set(value);
     }
@@ -35,6 +43,7 @@ public class User {
     public int getUserID() {
         return UserID.get();
     }
+
     public void setUserID(int value) {
         UserID.set(value);
     }
@@ -46,7 +55,7 @@ public class User {
 
     //задать текущего пользователя по логину
     public static void setCurrentUser(String userLogin, String userPassword) {
-        currentUser = new User(userLogin, userPassword);
+        currentUser = new User();
         //currentUser; // Метод для задания текущего пользователя
     }
 
@@ -55,8 +64,8 @@ public class User {
         currentUser = getCurrentUser();
 
         return FXCollections.observableArrayList(
-                currentUser,
-                new User("user47", "999")
-                );
+                currentUser//,
+                //new User("user47", "999")
+        );
     }
 }

@@ -1,6 +1,25 @@
 package com.example.chanmansys.DAO;
 
-import com.example.chanmansys.Model.Change;
+public interface ChangeDAO {
+    Change get(int changeID);
+
+    void create(Change change);
+
+    void update(Change change);
+
+
+
+    /*void delete(String userLogin);
+    public int insertCustomer(...);
+    public boolean deleteCustomer(...);
+    public Customer findCustomer(...);
+    public boolean updateCustomer(...);
+    public RowSet selectCustomersRS(...);
+    public Collection selectCustomersTO(...);*/
+}
+
+
+/*import com.example.chanmansys.DAO.Change;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -56,32 +75,5 @@ public class ChangeDAO {
 
         return changesList;
     }
-
-
-    /*public List<Change> getYesNoChanges() {
-        //"ChangeID = ? AND ChangeDescription = ? AND ChangePriority = ? AND ChangeStatus = ? " +
-        //"AND ServiceID_FK = ? AND UserID_FK = ?")) {
-        List<Change> changesList = new ArrayList<>();
-        try (Connection connection = DriverManager.getConnection(DATABASE_URL);
-             PreparedStatement statement = connection.prepareStatement("SELECT * FROM Change WHERE ChangeID = ?")){
-            statement.setInt(1, 1);
-            ResultSet resultSet = statement.executeQuery();
-            //return resultSet.next(); // Если запись найдена, возвращается true, иначе - false
-            while (resultSet.next()) {
-                Change change = new Change();
-                change.setChangeID(resultSet.getInt("ChangeID"));
-                change.setChangeDescription(resultSet.getString("ChangeDescription"));
-                change.setChangePriority(resultSet.getString("ChangePriority"));
-                change.setChangeStatus(resultSet.getString("ChangeStatus"));
-                change.setServiceID_FK(resultSet.getInt("ServiceID_FK"));
-                change.setUserID_FK(resultSet.getInt("UserID_FK"));
-                changesList.add(change);
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return changesList;
-        }
-        return changesList;
-    }*/
 }
+*/

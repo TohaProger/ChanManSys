@@ -19,8 +19,10 @@ public class LoginController {
         String userLogin = this.userLogin.getText();
         String userPassword = passwordField.getText();
 
-        UserDAO userDao = new UserDAO();
-        boolean loginSuccessful = userDao.loginUser(userLogin, userPassword);
+        // исправить так - создаем объект user с данными, а потом с помощью userDao его уже добавляем, удаляем и прочее
+
+        /*User user = new User().create();
+        boolean loginSuccessful = user.boolUserFind(userLogin, userPassword);
 
         // Здесь вы можете добавить логику проверки логина и пароля
         if (loginSuccessful) {
@@ -31,7 +33,7 @@ public class LoginController {
         } else {
             // Здесь в случае неверных данных
             StartApp.showAlertView("Неверный логин или пароль :(");
-        }
+        }*/
     }
 
     @FXML

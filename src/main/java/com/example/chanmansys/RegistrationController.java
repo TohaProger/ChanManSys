@@ -1,6 +1,6 @@
 package com.example.chanmansys;
 
-import com.example.chanmansys.DAO.UserDAO;
+import com.example.chanmansys.DAO.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -24,11 +24,13 @@ public class RegistrationController {
         String userPassword = passwordField.getText();
         String confirmPassword = confirmPasswordField.getText();
 
+        // исправить так - создаем объект user с данными, а потом с помощью userDao его уже добавляем, удаляем и прочее
+
         // Здесь логика регистрации пользователя
         // Проверка совпадения пароля и подтверждения пароля из БД
-        if (userPassword.equals(confirmPassword)) {
-            UserDAO userDao = new UserDAO();
-            boolean success = userDao.createUser(userLogin, userPassword);
+        /*if (userPassword.equals(confirmPassword)) {
+            User user = new User();
+            boolean success = user.boolUserCreate(userLogin, userPassword);
             if (success) {
                 StartApp.showAlertView("Вы успешно зарегистрированы.\nПереход в окно входа.");
                 StartApp.openWindow("login-view.fxml", "Окно входа");
@@ -37,7 +39,7 @@ public class RegistrationController {
             }
         } else {
             StartApp.showAlertView("Введенные пароли не совпадают.");
-        }
+        }*/
     }
 
     @FXML
