@@ -1,11 +1,8 @@
 package com.example.chanmansys;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -32,26 +29,19 @@ public class RegistrationController {
             UserDAO userDao = new UserDAO();
             boolean success = userDao.createUser(userLogin, userPassword);
             if (success) {
-                System.out.println("Регистрация успешна!");
+                StartApp.showAlertView("Вы успешно зарегистрированы.\nПереход в окно входа.");
+                StartApp.openWindow("login-view.fxml", "Окно входа");
             } else {
-                System.out.println("Ошибка при регистрации");
+                StartApp.showAlertView("Ошибка при регистрации :(");
             }
         } else {
-            System.out.println("Пароли не совпадают");
+            StartApp.showAlertView("Введенные пароли не совпадают.");
         }
     }
 
     @FXML
     //открыть окно входа из окна регистрации
     protected void onLoginViewButtonClick() throws IOException {
-        // Закрываем текущее окно
-        Stage currentStage = (Stage) userLoginField.getScene().getWindow();
-        currentStage.close(); // Используйте hide(), если хотите просто скрыть окно
-        // Открываем окно входа
-        FXMLLoader loginLoader = new FXMLLoader(getClass().getResource("login-view.fxml"));
-        Stage loginStage = new Stage();
-        loginStage.setTitle("Вход");
-        loginStage.setScene(new Scene(loginLoader.load()));
-        loginStage.show();
+        StartApp.openWindow("login-view.fxml", "Окно входа");
     }
 }
