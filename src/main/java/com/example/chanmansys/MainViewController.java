@@ -3,6 +3,8 @@
  */
 package com.example.chanmansys;
 
+import com.example.chanmansys.DAO.ChangeDAO;
+import com.example.chanmansys.Model.Change;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -18,9 +20,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 public class MainViewController {
     @FXML
-    private TableColumn<User, String> ChangeDescription;
+    private TableColumn<?, ?> ChangeDescription;
 
     @FXML
     private TableColumn<?, ?> ChangeID;
@@ -29,10 +33,10 @@ public class MainViewController {
     private TableColumn<?, ?> ChangePriority;
 
     @FXML
-    private TableColumn<User, String> ChangeStatus;
+    private TableColumn<?, ?> ChangeStatus;
 
     @FXML
-    private TableView<User> RequirementsTable;
+    private TableView<?> RequirementsTable;
 
     @FXML
     private TableColumn<?, ?> ServiceID_FK;
@@ -70,41 +74,29 @@ public class MainViewController {
     }
 
     private void loadTableData(Stage stage) {
-
         // Создаем экземпляр ChangeDAO для работы с базой данных
-        /*ChangeDAO changeDAO = new ChangeDAO();
+        ChangeDAO changeDAO = new ChangeDAO();
 
         // Получаем все записи из базы данных
         List<Change> changesList = changeDAO.getAllChanges();
         // Очищаем TableView
         RequirementsTable.getItems().clear();
-
         // Получаем ObservableList из TableView
-        List<Change> tableData = (List<Change>) RequirementsTable.getItems();
+        ObservableList<Change> tableData = (ObservableList<Change>) RequirementsTable.getItems();
 
         // Добавляем все записи из changesList в ObservableList
-        tableData.addAll(changesList);*/
+        tableData.addAll(changesList);
+
+        System.out.println(changesList.get(0).getChangePriority());
 
 
         // Отображаем информацию о текущем пользователе
-        User currentUser = User.getCurrentUser();
-
+        /*User currentUser = User.getCurrentUser();
         if (currentUser != null) {
             textDescription.setText("Вы вошли как: " + currentUser.getUserLogin());
         }
-
         // ниже идёт заполнение таблицы:
         ObservableList<User> users = User.getAllUsers();
-
-        // создаем список объектов
-        /*ObservableList<User> users = FXCollections.observableArrayList(
-                new User("user1", "34"),
-                new User("Bob", "22")
-        );*/
-        // определяем таблицу и устанавливаем данные
-        //TableView<User> table = new TableView<User>(users);
-        //table.setPrefWidth(250);
-        //table.setPrefHeight(200);
 
         RequirementsTable = new TableView<>(users);
 
@@ -113,18 +105,16 @@ public class MainViewController {
         ChangeDescription = new TableColumn<User, String>("login");
         // определяем фабрику для столбца с привязкой к свойству name
         //nameColumn.setCellValueFactory(new PropertyValueFactory<User, String>("UserLogin"));
-        ChangeDescription.setCellValueFactory(new PropertyValueFactory<User, String>("UserLogin"));
+        ChangeDescription.setCellValueFactory(new PropertyValueFactory<User, String>("ChangeDescription"));
         // добавляем столбец
         RequirementsTable.getColumns().add(ChangeDescription);
 
         // столбец для вывода возраста
-        /*TableColumn<User, Integer> ageColumn = new TableColumn<User, Integer>("password");
-        ageColumn.setCellValueFactory(new PropertyValueFactory<User, Integer>("UserPassword"));
-        table.getColumns().add(ageColumn);*/
-
         ChangeStatus = new TableColumn<User, String>("passw");
         ChangeStatus.setCellValueFactory(new PropertyValueFactory<User, String>("UserPassword"));
-        RequirementsTable.getColumns().add(ChangeStatus);
+        RequirementsTable.getColumns().add(ChangeStatus);*/
+
+
 
         //FlowPane root = new FlowPane(10, 10, RequirementsTable);
 
