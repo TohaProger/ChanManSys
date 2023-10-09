@@ -16,6 +16,10 @@ import java.util.Collection;
 public class StartApp extends Application {
     public static Stage currentStage; // Статическое поле для хранения основной сцены
 
+    public static DAOFactory daoFactory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
+
+    public static UserDAO userDAO = daoFactory.getUserDAO();
+
     @Override
     public void start(Stage stage) throws IOException {
         openWindow("login-view.fxml", "Вход"); // Открываем начальное окно (например, окно входа)
@@ -23,15 +27,13 @@ public class StartApp extends Application {
     public static void main(String[] args) {
         launch();
 
-
         // create the required DAO Factory
-        DAOFactory sqlLiteFactory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
-
+        /*DAOFactory sqlLiteFactory = DAOFactory.getDAOFactory(DAOFactory.SQLITE);
         // Create a DAO
-        UserDAO userDAO = sqlLiteFactory.getUserDAO();
+        UserDAO userDAO = sqlLiteFactory.getUserDAO();*/
 
         // create a new user
-        int newUserID = userDAO.createFromLogin("userNew");
+        /*int newUserID = userDAO.createFromLogin("userNew");
 
         // Find a customer object. Get the Transfer Object
         User user = userDAO.findUser(newUserID);
@@ -44,7 +46,7 @@ public class StartApp extends Application {
         userDAO.update(user);
 
         // delete a customer object
-        userDAO.delete(user);
+        userDAO.delete(user);*/
 
         // select all customers in the same city
         //User criteria = new User();

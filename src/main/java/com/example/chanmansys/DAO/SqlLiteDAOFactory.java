@@ -5,18 +5,27 @@ import java.sql.*;
 
 public class SqlLiteDAOFactory extends DAOFactory {
 
-    public static final String DRIVER =
-            "COM.cloudscape.core.RmiJdbcDriver";
+    //public static final String DRIVER = "COM.cloudscape.core.RmiJdbcDriver";
     public static final String DATABASE_URL = "jdbc:sqlite:ChanManSysDB.db"; // Путь к файлу базы данных SQLite
 
-    // method to create Cloudscape connections
+    // method to create database connection
     public static Connection createConnection() {
         // Use DRIVER and DATABASE_URL to create a connection. Recommend connection pool implementation/usage
         try (Connection connection = DriverManager.getConnection(DATABASE_URL);
-             PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS User ()")) {
+             PreparedStatement statement = connection.prepareStatement("CREATE TABLE IF NOT EXISTS User (" +
+                     "UserID INTEGER PRIMARY KEY," +
+                     "UserLogin VARCHAR(20)," +
+                     "UserPassword VARCHAR(10)" +
+                     ");")) {
+            System.out.println("Подключение к базе данных успешно");
             statement.execute();
+
+            return connection;
         } catch (SQLException e) {
+            System.out.println(e.getMessage());
+            //System.out.println("Подключение к SQLite не получилось ((");
             e.printStackTrace();
+            //return null;
         }
         return null;
     }
@@ -31,8 +40,7 @@ public class SqlLiteDAOFactory extends DAOFactory {
         return new SqlLiteChangeDAO();
     }
 
-    /*public OrderDAO getOrderDAO() {
-        // CloudscapeOrderDAO implements OrderDAO
-        return new CloudscapeOrderDAO();
+    /*public ServiceDAO getServicesDAO() {
+        return new SQLiteServicesDAO();
     }*/
 }

@@ -2,6 +2,8 @@ package com.example.chanmansys.DAO;
 
 // Interface that all UserDAOs must support
 
+import java.sql.SQLException;
+
 public interface UserDAO {
     User get(String userLogin);
     void create(String userLogin);
@@ -14,6 +16,8 @@ public interface UserDAO {
     int createFromLogin(String userLogin);
 
     User findUser(int userID);
+
+    boolean verification(String userLogin, String userPassword) throws SQLException;
 
     //void delete(String userLogin);
     /*public int insertCustomer(...);
