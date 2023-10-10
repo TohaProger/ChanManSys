@@ -6,7 +6,6 @@ package com.example.chanmansys.DAO;
 
 import com.example.chanmansys.Model.User;
 
-import java.io.IOException;
 import java.sql.*;
 
 public class SqlLiteUserDAO implements UserDAO {
@@ -39,41 +38,16 @@ public class SqlLiteUserDAO implements UserDAO {
 
     }
 
-    /*public void createTable() {
-        try (Connection connection = SqlLiteDAOFactory.createConnection()) {
-            assert connection != null;
-            try (PreparedStatement statement = connection.prepareStatement(
-                         "CREATE TABLE IF NOT EXISTS User (UserID INTEGER PRIMARY KEY AUTOINCREMENT, UserLogin TEXT, UserPassword TEXT)"
-                 )) {
-                statement.execute();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }*/
-
-    public boolean boolUserCreate(String userLogin, String userPassword) {
-        try (Connection connection = SqlLiteDAOFactory.createConnection()) {
-            assert connection != null;
-            try (PreparedStatement statement = connection.prepareStatement("INSERT INTO User (UserLogin, UserPassword) VALUES (?, ?)")) {
-                statement.setString(1, userLogin);
-                statement.setString(2, userPassword);
-                int rowsInserted = statement.executeUpdate();
-                return rowsInserted > 0;
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    @Override
+    public void addUser(String login, String password) throws SQLException {
+        PreparedStatement insert  = connection.prepareStatement("insert into User (UserLogin,UserPassword) values (?,?);");
+        insert.setString(1,login);
+        insert.setString(2,password);
+        insert.executeUpdate();
+        findUser(login).getUserID();
     }
 
     public boolean verification(String userLogin, String userPassword) {
-        /*String sql = "SELECT * FROM User WHERE UserLogin='"+userLogin+"' and UserPassword='"+userPassword+"';";
-        System.out.println("Verification "+sql);
-        //return true;
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(sql);
-        return true;*/
-
         try (Connection connection = SqlLiteDAOFactory.createConnection()) {
             String sql = "SELECT * FROM User WHERE UserLogin='"+userLogin+"' and UserPassword='"+userPassword+"';";
             assert connection != null;
@@ -96,8 +70,35 @@ public class SqlLiteUserDAO implements UserDAO {
         return 1;
     }
 
-    @Override
-    public User findUser(String login, String password) throws SQLException {
+    public User findUser(String login) throws SQLException {
+        User user = new User();
+        String sql = "SELECT * FROM User WHERE UserLogin='"+login+"';";
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                user= Mapping(resultSet);
+            }
+        } finally {
+            if (resultSet != null) try {
+                resultSet.close();
+            } catch (SQLException ignored) {
+            }
+            if (statement != null) try {
+                statement.close();
+            } catch (SQLException ignored) {
+            }
+            if (connection != null) try {
+                connection.close();
+            } catch (SQLException ignored) {
+            }
+        }
+        return user;
+    }
+
+    /*public User findUser(String login, String password) throws SQLException {
         User user = new User();
         String sql = "SELECT * FROM User WHERE LOGIN='"+login+"' and PASSWORD='"+password+"';";
         Statement statement = null;
@@ -115,7 +116,7 @@ public class SqlLiteUserDAO implements UserDAO {
             if (connection != null) try { connection.close(); } catch (SQLException logOrIgnore) {}
         }
         return user;
-    }
+    }*/
 
     @Override
     public User Mapping(ResultSet result) throws SQLException {

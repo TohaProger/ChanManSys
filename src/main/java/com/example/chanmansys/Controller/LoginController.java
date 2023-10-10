@@ -31,7 +31,7 @@ public class LoginController {
 
         if (StartApp.daoFactory.getUserDAO().verification(loginField.getText(), passwordField.getText()))
         {
-            user=StartApp.daoFactory.getUserDAO().findUser(loginField.getText(), passwordField.getText());
+            user=StartApp.daoFactory.getUserDAO().findUser(loginField.getText());
             //System.out.println("LoginController user.login="+user.getLogin());
             StartApp.openWindow("main-view.fxml", "Главное окно");
         }
@@ -39,7 +39,7 @@ public class LoginController {
         {
             //loginField.clear();
             passwordField.clear();
-            StartApp.showAlertView(Alert.AlertType.ERROR, "Ошибка авторизации", "Неверные данные");
+            StartApp.showAlertView(Alert.AlertType.ERROR, "Ошибка авторизации. Неверные данные");
         }
     }
 

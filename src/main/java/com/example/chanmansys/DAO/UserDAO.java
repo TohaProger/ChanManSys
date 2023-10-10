@@ -4,7 +4,6 @@ package com.example.chanmansys.DAO;
 
 import com.example.chanmansys.Model.User;
 
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -17,11 +16,11 @@ public interface UserDAO {
     void update(User user);
     void delete(User user);
 
-    boolean boolUserCreate(String userLogin, String userPassword);
+    void addUser(String userLogin, String userPassword) throws SQLException;
 
     int createFromLogin(String userLogin);
 
-    User findUser(String userLogin, String userPassword) throws SQLException;
+    User findUser(String userLogin) throws SQLException;
 
     boolean verification(String userLogin, String userPassword) throws SQLException;
 

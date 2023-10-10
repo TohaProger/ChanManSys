@@ -19,7 +19,7 @@
                <Font size="14.0" />
             </font>
          </Label>
-      <TextField fx:id="userLoginField" maxHeight="30.0" maxWidth="300.0" minHeight="30.0" promptText="Логин" />
+      <TextField fx:id="loginField" maxHeight="30.0" maxWidth="300.0" minHeight="30.0" promptText="Логин" />
       <Label text="Пароль:">
             <font>
                <Font size="14.0" />

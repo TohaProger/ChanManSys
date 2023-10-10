@@ -57,9 +57,9 @@ public class StartApp extends Application {
         // get values.
     }
 
-    public static void showAlertView(AlertType alertType, String alertTitle, String alertMessage) {
+    public static void showAlertView(AlertType alertType, String alertMessage) {
         Alert alert = new Alert(alertType);
-        alert.setTitle(alertTitle);
+        //alert.setTitle(alertTitle);
         alert.setHeaderText(null);
         alert.setContentText(alertMessage);
         alert.showAndWait();

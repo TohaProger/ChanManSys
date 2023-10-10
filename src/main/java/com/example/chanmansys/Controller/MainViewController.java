@@ -1,12 +1,9 @@
 package com.example.chanmansys.Controller;
 
+import com.example.chanmansys.Model.Change;
 import javafx.fxml.FXML;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
 
 public class MainViewController {
@@ -49,14 +46,12 @@ public class MainViewController {
     @FXML
     public void selectSourceTab(MouseEvent mouseEvent) {
     }
+
+    public static Change changes =new Change();
+
     public void initialize() {
         // Загрузка данных в таблицу
-
         loadTableData();
-
-        //ChangeDAO changeDAO = new ChangeDAO();
-
-        //System.out.println(changeDAO.getYesNoChanges());
     }
 
     private void loadTableData() {
