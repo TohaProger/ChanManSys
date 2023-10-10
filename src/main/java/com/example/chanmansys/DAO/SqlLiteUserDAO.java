@@ -6,6 +6,7 @@ package com.example.chanmansys.DAO;
 
 import com.example.chanmansys.Model.User;
 
+import java.io.IOException;
 import java.sql.*;
 
 public class SqlLiteUserDAO implements UserDAO {
@@ -65,20 +66,6 @@ public class SqlLiteUserDAO implements UserDAO {
         }
     }
 
-    public boolean boolUserFind(String userLogin, String userPassword) {
-        try (Connection connection = SqlLiteDAOFactory.createConnection()) {
-            assert connection != null;
-            try (PreparedStatement statement = connection.prepareStatement("SELECT * FROM User WHERE UserLogin = ? AND UserPassword = ?")) {
-                statement.setString(1, userLogin);
-                statement.setString(2, userPassword);
-                ResultSet resultSet = statement.executeQuery();
-                return resultSet.next(); // Если запись найдена, возвращается true, иначе - false
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public boolean verification(String userLogin, String userPassword) {
         /*String sql = "SELECT * FROM User WHERE UserLogin='"+userLogin+"' and UserPassword='"+userPassword+"';";
         System.out.println("Verification "+sql);
@@ -110,7 +97,33 @@ public class SqlLiteUserDAO implements UserDAO {
     }
 
     @Override
-    public User findUser(int userID) {
-        return null;
+    public User findUser(String login, String password) throws SQLException {
+        User user = new User();
+        String sql = "SELECT * FROM User WHERE LOGIN='"+login+"' and PASSWORD='"+password+"';";
+        Statement statement = null;
+        ResultSet resultSet = null;
+        try {
+
+            statement = connection.createStatement();
+            resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                user= Mapping(resultSet);
+            }
+        } finally {
+            if (resultSet != null) try { resultSet.close(); } catch (SQLException logOrIgnore) {}
+            if (statement != null) try { statement.close(); } catch (SQLException logOrIgnore) {}
+            if (connection != null) try { connection.close(); } catch (SQLException logOrIgnore) {}
+        }
+        return user;
+    }
+
+    @Override
+    public User Mapping(ResultSet result) throws SQLException {
+        ResultSet resultSet = result;
+        User user = new User();
+        user.setUserID(result.getInt("UserID"));
+        user.setUserLogin(resultSet.getString(2));
+        user.setUserPassword(resultSet.getString(3));
+        return user;
     }
 }

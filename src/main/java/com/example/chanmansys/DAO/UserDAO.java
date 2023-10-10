@@ -4,8 +4,13 @@ package com.example.chanmansys.DAO;
 
 import com.example.chanmansys.Model.User;
 
+import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Класс Dao таблицы User для работы с БД
+ */
 public interface UserDAO {
     User get(String userLogin);
     void create(String userLogin);
@@ -13,13 +18,20 @@ public interface UserDAO {
     void delete(User user);
 
     boolean boolUserCreate(String userLogin, String userPassword);
-    boolean boolUserFind(String userLogin, String userPassword);
 
     int createFromLogin(String userLogin);
 
-    User findUser(int userID);
+    User findUser(String userLogin, String userPassword) throws SQLException;
 
     boolean verification(String userLogin, String userPassword) throws SQLException;
+
+    /**
+     * Маппинг результата апроса
+     * @param result результат
+     * @return  Users
+     * @throws SQLException исключение при работе с SQL-запросами
+     */
+    User Mapping(ResultSet result) throws SQLException;
 
     //void delete(String userLogin);
     /*public int insertCustomer(...);

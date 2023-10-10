@@ -40,6 +40,11 @@ public class SqlLiteDAOFactory extends DAOFactory {
         return new SqlLiteChangeDAO();
     }
 
+    @Override
+    public ServiceDAO getServiceDAO() {
+        return null;
+    }
+
     /*public ServiceDAO getServicesDAO() {
         return new SQLiteServicesDAO();
     }*/

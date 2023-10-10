@@ -1,6 +1,3 @@
-/**
- * Sample Skeleton for 'main-view.fxml' Controller Class
- */
 package com.example.chanmansys.Controller;
 
 import javafx.fxml.FXML;

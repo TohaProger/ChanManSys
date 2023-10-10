@@ -1,7 +1,9 @@
 package com.example.chanmansys.Controller;
 
+import com.example.chanmansys.Model.User;
 import com.example.chanmansys.StartApp;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.io.IOException;
@@ -14,40 +16,30 @@ public class LoginController {
     @FXML
     private PasswordField passwordField;
 
+    public static User user;
+
+    public static boolean isUserIn = true;
+
+    /**
+     * Функция входа как пользователь
+     * @throws SQLException  исключение при работе с SQL-запросами
+     */
     @FXML
     protected void onLoginButtonLogin() throws SQLException {
-        String userLogin = this.loginField.getText();
-        String userPassword = passwordField.getText();
-
-        // исправить так - создаем объект user с данными, а потом с помощью userDao его уже добавляем, удаляем и прочее
-
-        //User user = new User();
-        //boolean loginSuccessful = user.boolUserFind(userLogin, userPassword);
-
-        // Здесь вы можете добавить логику проверки логина и пароля
         System.out.println(loginField.getText());
         System.out.println(passwordField.getText());
 
-
-        if (StartApp.userDAO.verification(loginField.getText(), passwordField.getText()))
+        if (StartApp.daoFactory.getUserDAO().verification(loginField.getText(), passwordField.getText()))
         {
-            System.out.println("Ну типа зарегались");
-            // Здесь действия после успешной авторизации
-            //user=HomeViewController.daoFactory.getUserDAO().findUser(LoginText.getText(), PasswordText.getText());
-            /*StartApp.showAlertView("Вы успешно авторизованы.\nПереход в главное окно.");
-            User.setCurrentUser(userLogin, userPassword);
-            StartApp.openWindow("main-view.fxml", "Главное окно");*/
+            user=StartApp.daoFactory.getUserDAO().findUser(loginField.getText(), passwordField.getText());
+            //System.out.println("LoginController user.login="+user.getLogin());
+            StartApp.openWindow("main-view.fxml", "Главное окно");
         }
-        else {
-            // Здесь в случае неверных данных
-            /*loginField.clear();
+        else
+        {
+            //loginField.clear();
             passwordField.clear();
-            StartApp.showAlertView("Неверный логин или пароль :(")
-
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Ошибка авторизации");
-            alert.setContentText("Неверные данные");
-            alert.showAndWait();*/
+            StartApp.showAlertView(Alert.AlertType.ERROR, "Ошибка авторизации", "Неверные данные");
         }
     }
 
