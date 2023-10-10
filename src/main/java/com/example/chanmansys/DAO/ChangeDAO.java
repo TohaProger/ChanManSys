@@ -1,5 +1,7 @@
 package com.example.chanmansys.DAO;
 
+import com.example.chanmansys.Model.Change;
+
 public interface ChangeDAO {
     Change get(int changeID);
 
@@ -19,7 +21,7 @@ public interface ChangeDAO {
 }
 
 
-/*import com.example.chanmansys.DAO.Change;
+/*import com.example.chanmansys.Model.Change;
 
 import java.sql.*;
 import java.util.ArrayList;

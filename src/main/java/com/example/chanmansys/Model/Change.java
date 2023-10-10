@@ -1,4 +1,4 @@
-package com.example.chanmansys.DAO;
+package com.example.chanmansys.Model;
 
 import java.io.IOException;
 import java.net.URISyntaxException;

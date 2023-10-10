@@ -3,9 +3,6 @@
  */
 package com.example.chanmansys;
 
-import com.example.chanmansys.DAO.ChangeDAO;
-import com.example.chanmansys.DAO.Change;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.control.CheckBox;
@@ -14,9 +11,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-
-import java.util.List;
 
 public class MainViewController {
     @FXML

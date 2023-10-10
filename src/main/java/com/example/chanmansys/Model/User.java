@@ -1,4 +1,4 @@
-package com.example.chanmansys.DAO;
+package com.example.chanmansys.Model;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;

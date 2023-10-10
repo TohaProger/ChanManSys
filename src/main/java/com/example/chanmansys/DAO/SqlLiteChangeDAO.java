@@ -6,6 +6,8 @@ package com.example.chanmansys.DAO;
 // The client is thus shielded from knowing
 // these implementation details.
 
+import com.example.chanmansys.Model.Change;
+
 public class SqlLiteChangeDAO implements ChangeDAO {
     @Override
     public Change get(int changeID) {

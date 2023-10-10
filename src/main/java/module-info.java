@@ -8,4 +8,6 @@ module com.example.chanmansys {
     exports com.example.chanmansys;
     exports com.example.chanmansys.DAO;
     opens com.example.chanmansys.DAO to javafx.fxml;
+    exports com.example.chanmansys.Model;
+    opens com.example.chanmansys.Model to javafx.fxml;
 }

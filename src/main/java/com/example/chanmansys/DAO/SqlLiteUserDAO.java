@@ -4,6 +4,8 @@ package com.example.chanmansys.DAO;
 // он включает все SqlLite specific code and SQL statements.
 // The client is thus shielded from knowing these implementation details
 
+import com.example.chanmansys.Model.User;
+
 import java.sql.*;
 
 public class SqlLiteUserDAO implements UserDAO {

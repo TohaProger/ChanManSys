@@ -2,6 +2,8 @@ package com.example.chanmansys.DAO;
 
 // Interface that all UserDAOs must support
 
+import com.example.chanmansys.Model.User;
+
 import java.sql.SQLException;
 
 public interface UserDAO {

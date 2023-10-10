@@ -1,7 +1,6 @@
 package com.example.chanmansys;
 
 import com.example.chanmansys.DAO.DAOFactory;
-import com.example.chanmansys.DAO.User;
 import com.example.chanmansys.DAO.UserDAO;
 
 import javafx.application.Application;
@@ -11,7 +10,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import java.io.IOException;
-import java.util.Collection;
 
 public class StartApp extends Application {
     public static Stage currentStage; // Статическое поле для хранения основной сцены

@@ -1,10 +1,6 @@
 package com.example.chanmansys;
 
-import com.example.chanmansys.DAO.DAOFactory;
-import com.example.chanmansys.DAO.User;
-import com.example.chanmansys.DAO.UserDAO;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import java.io.IOException;
