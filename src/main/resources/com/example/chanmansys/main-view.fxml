@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<FlowPane prefHeight="483.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chanmansys.MainViewController">
+<FlowPane prefHeight="483.0" prefWidth="1067.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.chanmansys.Controller.MainViewController">
     <VBox alignment="TOP_CENTER" prefHeight="452.0" prefWidth="191.0" spacing="10.0">
         <children>
             <Label text="Выбирите фильтр ">

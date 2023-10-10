@@ -1,5 +1,6 @@
-package com.example.chanmansys;
+package com.example.chanmansys.Controller;
 
+import com.example.chanmansys.StartApp;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
